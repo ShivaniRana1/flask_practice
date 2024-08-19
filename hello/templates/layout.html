@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .close-button {
+        position: absolute; /* Position the close button */
+        top: 0;
+        right: 0;
+        padding: 0 5px; /* Add some padding to make the close button clickable */
+        cursor: pointer; /* Add pointer cursor on hover */
+      }
+      @keyframes wiggle {
+        0% { transform: translateX(-20%); }
+        50% { transform: translateX(20%); }
+        100% { transform: translateX(-20%); }
+      }
+      
+      .wiggling-text {
+        position: relative; /* Change from absolute to relative to position within the container */
+        top: 50%;
+        left: 0;
+        font-size: 24px;
+        animation: wiggle 50s cubic-bezier(0.42, 0, 1, 1) infinite; /* Slower animation with custom timing function and duration */
+      }
+      
+      .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+        padding-top: 50px;
+      }
+      .text{
+        color:Blue;
+        background-color:white;
+        font-weight: bold;
+        opacity:50%;
+        display: inline-block;
+        text-align: center;
+        display: block;
+        
+      }
+      .text-common{
+        text-align: center;
+        color:white;
+        font-weight: bold;
+       
+
+      }
+      /* Card styles */
+      .card {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          position: relative; /* Positioning for the glitter overlay */
+          overflow: hidden;
+          display: inline-block;
+          padding: 20px;
+          flex: 1;
+          margin-top: 10px;
+      }
+
+      .card::after {
+          content: ''; /* Empty content for pseudo-element */
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: url('https://th.bing.com/th/id/OIP.CRUODok0f9D7Ds7Z6b1BfwHaE8?w=228&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7') center center; /* Glitter image URL */
+          opacity: 0.1; /* Adjust the opacity as needed */
+          pointer-events: none; /* Ensures the pseudo-element doesn't intercept pointer events */
+          display: flex;
+      }
+
+      .card-content {
+          padding: 15px;
+          box-sizing: border-box;
+          position: relative; /* Ensure content is above the glitter overlay */
+          z-index: 1; /* Ensure content is above the glitter overlay */
+          color: black; /* Set text color to black */
+      }
+      .container {
+          color:Light Grey;
+          background-image: url('https://img.freepik.com/premium-photo/dark-black-wave-with-black-background-simple-contemporary-grunge-backdrop-texture-grey-generative-ai_1033022-7715.jpg'); /* Path to your background image */
+          background-size: cover; /* Cover the entire container */
+          background-position: center; /* Center the background image */
+          background-attachment: fixed; /* Fixed background position */
+          padding: 20px; /* Example padding to ensure content is visible */
+      }
+      body {
+        color: LightGrey;
+        background-image: url('https://img.freepik.com/premium-photo/dark-black-wave-with-black-background-simple-contemporary-grunge-backdrop-texture-grey-generative-ai_1033022-7715.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 20px; /* Adjust padding as needed */
+    }
+        </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {%if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>  WALTHER FARMS   </title>
+    {% endif %}
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    {%block head%}
+    {%endblock head%}
+  </head>
+  <body>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+            <span class="close-button" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+                    {%block content1 %}
+                    {% endblock content1%}
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% block content1 %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .containery {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: pink;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table.data {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            border: 2px solid black; /* Adjust border width and color */
+        }
+        table.data th, table.data td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        table.data th {
+            background-color: #f2f2f2;
+        }
+        /* Additional style to improve visibility */
+        table.data td {
+            background-color: white; /* Set background color for table cells */
+        } 
+    </style>
+{% endblock head %}
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="https://waltherfarms.com/", target ="blank">WALTHER FARMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://app.atlas.co/projects/4WR4hikREwEW5b9IbtpX?loc=-98.5814%2C42.1964%2C3.4794z" target ="blank">Atlas Website for Map</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Data Stored
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Data1</a>
+            <a class="dropdown-item" href="#">Data2</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('login')}}">Logout</a>
+          </li>
+      </ul>
+
+    </div>
+  </nav>
+<div class=" text-common">
+    {% if 'user_id' in session %}
+
+    <h1>Welcome to the Dashboard</h1>
+    <form id="calculationForm" action="{{ url_for('join_data') }}" method="post">
+    <label for="croptable">Choose a table to connect with Agvise data:</label>
+    <select name="croptable" id="croptable">
+        {%for row in data['df']['Tables_in_WaltherFarms_Reporting']%}   
+    <option value="{{row}}">  
+        {{row}} 
+    </option>
+    {% endfor%}
+    </select>
+<div>
+    <label for="agtable">Choose Area Name to get agvise data:</label>
+    <select name="agtable" id="agtable">
+        {%for row in data['df_area']%}   
+    <option value="{{row}}">  
+        {{row}} 
+    </option>
+    {% endfor%}
+    </select>
+
+    <label for="yrtable">Choose Year:</label>
+    <select name="yrtable" id="yrtable">
+        {%for row in range(1990,2050)%}   
+    <option value="{{row}}">
+       
+        {{row}}      
+    </option>
+    {% endfor%}
+    </select>
+
+    <br><br>
+    <input type="submit" value="Submit">
+    </form>
+</div>
+    {% endif %}
+
+    {% if yrtable %}
+    {{yrvalue}}
+   {%else%}
+
+
+    </div>
+
+        <h1 class='text-common'> Croptrak Data</h1>
+        {% for table in tables %}
+        <tr class='container'>
+        {{ table|safe }}
+        </tr>
+        {% endfor %}
+    </div>
+    {%endif%}
+</div>
+{% endblock content1 %}

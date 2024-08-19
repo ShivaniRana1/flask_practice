@@ -1,0 +1,55 @@
+{% extends "layout.html"%}
+{%block content1 %}
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="https://waltherfarms.com/", target ="blank">WALTHER FARMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('register')}}">Registration</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container" >
+    <h1 class="text-common element wiggling-text"> Login :-)</h1>
+    <form method ='POST' action="{{url_for('login')}}">
+        {{forms.hidden_tag()}}
+        <fieldset class="form-group col-sm-6">
+
+                <div class="form-group card">
+                    {{ forms.email.label(class="form-control-label pt-3")}}
+                    {{ forms.email(class="form-control form-control-lg")}}
+                    {{ forms.password.label(class="form-control-label pt-3")}}
+                    {{ forms.password(class="form-control form-control-lg")}}
+
+                </div>
+                <div class="form-check">
+                    {{forms.remember(class="form-check-input")}}
+                    {{forms.remember.label(class="form-check-label")}}
+                    
+                </div>
+        </fieldset>
+        <div class= "form-group">
+            {{ forms.submit(class="btn btn-info ")}}
+        </div>
+        <small class= "text-muted ml-2"> 
+            <a href ="{{ url_for('forgot_password') }}">Forgot Password?</a>
+        </small>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+                Need an Account? <a class= "ml-2" href= "{{url_for('register')}}">Register!!! </a>
+        </small>
+
+    </div>
+</div>
+    
+{% endblock content1 %} 

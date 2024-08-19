@@ -1,0 +1,45 @@
+{% extends "layout.html"%}
+{%block content1 %}
+
+<nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="https://waltherfarms.com/", target ="blank">WALTHER FARMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('register')}}">Registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+<div class="container">
+
+        
+        <div class="center ">
+
+                <h3  class="text element wiggling-text col-sm-12">
+                Dive into the fascinating world of map visualizations! 
+                These innovative maps can be very powerful in providing information
+                To get real time data from database server , please login/register first.
+                </h3>
+
+        </div>
+        <h3 class="text-common center "> FIRST LOGIN/REGISTER TO GET REAL TIME DATA FROM CROPTRAK</h3>
+          <div class="card-container card-title col-sm-6 center">
+            <div class="card card-flex"><a href="{{url_for('register')}}">Register!!</a></div>
+            <div class="card card-flex"><a href="{{url_for('login')}}">Login</a></div>
+
+            
+        
+</div>
+         
+{% endblock content1%}
